@@ -1,0 +1,52 @@
+[
+ {
+    "mode": "NULLABLE",
+    "name": "timestamp",
+    "type": "TIMESTAMP" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "request_id",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "rule_id",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "waf_logged",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "waf_blocked",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "waf_passed",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "severity",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "anomaly_score",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "logdata",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "waf_message",
+    "type": "STRING" 
+ }
+]

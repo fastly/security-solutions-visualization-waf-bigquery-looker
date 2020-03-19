@@ -1,0 +1,671 @@
+- dashboard: waf_dashboard
+  title: WAF Dashboard
+  layout: newspaper
+  elements:
+  - name: Top 10 Blocked IPs
+    title: Top 10 Blocked IPs
+    model: waf_demo
+    explore: request_logs
+    type: looker_column
+    fields: [request_logs.client_ip, request_logs.count]
+    filters:
+      request_logs.waf_blocked: '1'
+    sorts: [request_logs.count desc]
+    limit: 500
+    column_limit: 50
+    query_timezone: America/Los_Angeles
+    color_application:
+      collection_id: e4393aae-f2ff-4b1a-877e-7c48897378ca
+      palette_id: 7f167c51-1d69-49a8-bd76-a8bd12b9a8d3
+      options:
+        steps: 5
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    y_axes: [{label: "# of Requests", orientation: left, series: [{axisId: request_logs.count,
+            id: request_logs.count, name: Violations Count}], showLabels: true, showValues: true,
+        unpinAxis: false, tickDensity: custom, tickDensityCustom: 38, type: linear}]
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: IP Address
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    limit_displayed_rows_values:
+      show_hide: hide
+      first_last: first
+      num_rows: 0
+    hide_legend: false
+    legend_position: center
+    series_types: {}
+    point_style: circle
+    series_colors: {}
+    series_labels:
+      request_logs.count: Violations Count
+    show_value_labels: false
+    label_density: 25
+    label_color: []
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_dropoff: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    listen:
+      Time Range: request_logs.timestamp_date
+    row: 8
+    col: 16
+    width: 8
+    height: 7
+  - name: WAF Logged & Blocks by Country
+    title: WAF Logged & Blocks by Country
+    model: waf_demo
+    explore: request_logs
+    type: looker_map
+    fields: [request_logs.count, request_logs.country_code]
+    filters:
+      request_logs.logged_condition: 'Yes'
+    sorts: [request_logs.count desc, request_logs.country_code]
+    limit: 500
+    column_limit: 50
+    query_timezone: America/Los_Angeles
+    map_plot_mode: points
+    heatmap_gridlines: false
+    heatmap_gridlines_empty: true
+    heatmap_opacity: 0.5
+    show_region_field: true
+    draw_map_labels_above_data: true
+    map_tile_provider: light
+    map_position: custom
+    map_latitude: 24.474650249010416
+    map_longitude: 16.73904418945313
+    map_zoom: 1
+    map_scale_indicator: 'off'
+    map_pannable: true
+    map_zoomable: true
+    map_marker_type: circle
+    map_marker_icon_name: default
+    map_marker_radius_mode: proportional_value
+    map_marker_units: meters
+    map_marker_proportional_scale_type: linear
+    map_marker_color_mode: fixed
+    show_view_names: false
+    show_legend: false
+    map_value_colors: [orange, red]
+    quantize_map_value_colors: false
+    reverse_map_value_colors: false
+    series_types: {}
+    listen:
+      Time Range: request_logs.timestamp_date
+    row: 8
+    col: 8
+    width: 8
+    height: 7
+  - name: Traffic by Attack Type
+    title: Traffic by Attack Type
+    model: waf_demo
+    explore: request_logs
+    type: looker_line
+    fields: [request_logs.timestamp_minute15, request_logs.anomaly_count, request_logs.http_violation_count,
+      request_logs.lfi_count, request_logs.php_injection_count, request_logs.rce_count,
+      request_logs.rfi_count, request_logs.session_fixation_count, request_logs.sql_injection_count,
+      request_logs.xss_count]
+    fill_fields: [request_logs.timestamp_minute15]
+    filters: {}
+    sorts: [request_logs.timestamp_minute15 desc]
+    limit: 500
+    column_limit: 50
+    query_timezone: America/Los_Angeles
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    y_axes: [{label: "# of Requests", orientation: left, series: [{axisId: request_logs.anomaly_count,
+            id: request_logs.anomaly_count, name: Anomaly Count}, {axisId: request_logs.http_violation_count,
+            id: request_logs.http_violation_count, name: HTTP Violation Count}, {
+            axisId: request_logs.lfi_count, id: request_logs.lfi_count, name: Lfi
+              Count}, {axisId: request_logs.php_injection_count, id: request_logs.php_injection_count,
+            name: Php Injection Count}, {axisId: request_logs.rce_count, id: request_logs.rce_count,
+            name: Rce Count}, {axisId: request_logs.rfi_count, id: request_logs.rfi_count,
+            name: Rfi Count}, {axisId: request_logs.session_fixation_count, id: request_logs.session_fixation_count,
+            name: Session Fixation Count}, {axisId: request_logs.sql_injection_count,
+            id: request_logs.sql_injection_count, name: SQL Injection Count}, {axisId: request_logs.xss_count,
+            id: request_logs.xss_count, name: Xss Count}], showLabels: true, showValues: true,
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: Request Time (Minute15)
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    limit_displayed_rows_values:
+      show_hide: hide
+      first_last: first
+      num_rows: 0
+    hidden_series: []
+    hide_legend: false
+    legend_position: right
+    series_types: {}
+    point_style: none
+    series_labels:
+      0 - 0|FIELD|0|FIELD|0 - request_logs.count: WAF Blocked
+      0 - 1|FIELD|0|FIELD|0 - request_logs.count: WAF Executed
+      0 - 1|FIELD|0|FIELD|1 - request_logs.count: WAF Logged
+      request_logs.anomaly_count: Inbound Anomaly
+      request_logs.http_violation_count: HTTP Protocol Violation
+      request_logs.lfi_count: Local File Inclusion (LFI)
+      request_logs.php_injection_count: PHP Injection
+      request_logs.rce_count: Remote Command Execution (RCE)
+      request_logs.rfi_count: Remote File Inclusion (RFI)
+      request_logs.session_fixation_count: Session Fixation
+      request_logs.sql_injection_count: SQL Injection
+      request_logs.xss_count: Cross-site Scripting (XSS)
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    swap_axes: false
+    show_null_points: false
+    interpolation: linear
+    listen:
+      Time Range: request_logs.timestamp_date
+    row: 15
+    col: 0
+    width: 16
+    height: 8
+  - name: Traffic by Attack Type (%)
+    title: Traffic by Attack Type (%)
+    model: waf_demo
+    explore: request_logs
+    type: looker_donut_multiples
+    fields: [request_logs.anomaly_count, request_logs.lfi_count, request_logs.http_violation_count,
+      request_logs.php_injection_count, request_logs.rce_count, request_logs.rfi_count,
+      request_logs.session_fixation_count, request_logs.sql_injection_count, request_logs.xss_count]
+    limit: 500
+    query_timezone: America/Los_Angeles
+    show_value_labels: true
+    font_size: 12
+    hide_legend: false
+    series_labels:
+      request_logs.anomaly_count: Inbound Anomaly
+      request_logs.session_fixation_count: Session Fixation
+      request_logs.http_violation_count: HTTP Violation
+      request_logs.php_injection_count: PHP Injection
+      request_logs.rce_count: Remote Commend Execution (RCE)
+      request_logs.lfi_count: Local File Inclusion (LFI)
+      request_logs.rfi_count: Remote File Inclusion (RFI)
+      request_logs.sql_injection_count: SQL Injection
+      request_logs.xss_count: Cross-site Scripting (XSS)
+    series_types: {}
+    row: 15
+    col: 16
+    width: 8
+    height: 8
+  - name: Top URLs (Logged)
+    title: Top URLs (Logged)
+    model: waf_demo
+    explore: request_logs
+    type: table
+    fields: [request_logs.logged_count, request_logs.req_uri, request_logs.resp_status]
+    filters:
+      request_logs.waf_executed: '1'
+    sorts: [request_logs.logged_count desc]
+    limit: 50
+    column_limit: 50
+    query_timezone: America/Los_Angeles
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    series_labels:
+      request_logs.req_uri: Request URL
+      request_logs.resp_status: Response Status
+      request_logs.logged_count: "# of Requests"
+    table_theme: editable
+    limit_displayed_rows: false
+    limit_displayed_rows_values:
+      show_hide: show
+      first_last: first
+      num_rows: '96'
+    enable_conditional_formatting: true
+    conditional_formatting: []
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    series_types: {}
+    up_color: "#e82c2a"
+    down_color: "#f79421"
+    total_color: "#3cb64b"
+    row: 30
+    col: 0
+    width: 16
+    height: 7
+  - name: WAF Traffic (Daily)
+    title: WAF Traffic (Daily)
+    model: waf_demo
+    explore: request_logs
+    type: looker_line
+    fields: [request_logs.count, request_logs.timestamp_date]
+    fill_fields: [request_logs.timestamp_date]
+    filters:
+      request_logs.waf_executed: '1'
+    sorts: [request_logs.timestamp_date desc]
+    limit: 500
+    query_timezone: America/Los_Angeles
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    y_axes: [{label: "# of Requests", orientation: left, series: [{axisId: request_logs.count,
+            id: request_logs.count, name: Request Logs}], showLabels: true, showValues: true,
+        unpinAxis: false, tickDensity: default, tickDensityCustom: 5, type: linear}]
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: Request Time (Daily)
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: center
+    point_style: none
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    show_null_points: true
+    interpolation: linear
+    row: 37
+    col: 0
+    width: 24
+    height: 7
+  - name: Top Rules with IP Count (Logged)
+    title: Top Rules with IP Count (Logged)
+    model: waf_demo
+    explore: request_logs
+    type: table
+    fields: [waf_logs.rule_message, request_logs.distinct_ip, request_logs.count]
+    filters:
+      waf_logs.rule_id: not 0
+      request_logs.logged_condition: 'Yes'
+    sorts: [request_logs.count desc]
+    limit: 500
+    query_timezone: America/Los_Angeles
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    series_labels:
+      request_logs.count: "# of Requests"
+    table_theme: editable
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    row: 44
+    col: 0
+    width: 12
+    height: 6
+  - name: Top URLs (Blocked)
+    title: Top URLs (Blocked)
+    model: waf_demo
+    explore: request_logs
+    type: table
+    fields: [request_logs.req_uri, request_logs.count]
+    filters:
+      request_logs.waf_blocked: '1'
+      request_logs.waf_executed: '1'
+    sorts: [request_logs.count desc]
+    limit: 50
+    query_timezone: America/Los_Angeles
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    series_labels:
+      request_logs.req_uri: Request URL
+      request_logs.count: "# of Requests"
+    table_theme: editable
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    series_types: {}
+    row: 23
+    col: 0
+    width: 16
+    height: 7
+  - name: WAF Logged Traffic Analysis
+    title: WAF Logged Traffic Analysis
+    model: waf_demo
+    explore: request_logs
+    type: table
+    fields: [request_logs.timestamp_time, request_logs.client_ip, request_logs.ip_organization,
+      request_logs.tls_client_protocol, request_logs.req_accept, request_logs.req_accept_charset,
+      request_logs.req_accept_encoding, request_logs.req_accept_language, request_logs.req_method,
+      request_logs.req_user_agent, request_logs.req_uri, request_logs.req_referer,
+      request_logs.resp_status, request_logs.anomaly_score, waf_logs.rule_message,
+      request_logs.count, waf_logs.logdata_decode]
+    filters:
+      request_logs.logged_condition: 'Yes'
+      request_logs.ip_organization: "-EMPTY"
+    sorts: [request_logs.timestamp_time desc]
+    limit: 40
+    query_timezone: America/Los_Angeles
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    series_labels:
+      request_logs.tls_client_protocol: TLS Client Protocol
+      request_logs.req_accept: Accept
+      request_logs.req_accept_charset: Accept Charset
+      request_logs.req_accept_encoding: Accept Encoding
+      request_logs.req_accept_language: Accept Language
+      request_logs.req_method: Request Method
+      request_logs.req_user_agent: User-Agent
+      request_logs.req_uri: Request URL
+      request_logs.req_referer: Referrer
+      request_logs.resp_status: Origin response
+      request_logs.anomaly_score: Inbound Anomaly Score
+      waf_logs.rule_message: WAF Rule Message
+      request_logs.php_injection_condition: PHP Injection
+      request_logs.count: "# of Requests"
+      request_logs.timestamp_time: Request Time (UTC)
+    table_theme: editable
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    series_types: {}
+    row: 50
+    col: 0
+    width: 24
+    height: 14
+  - name: Top 10 Logged IPs
+    title: Top 10 Logged IPs
+    model: waf_demo
+    explore: request_logs
+    type: looker_column
+    fields: [request_logs.client_ip, request_logs.count]
+    filters:
+      request_logs.timestamp_date: 7 days
+      request_logs.logged_condition: 'Yes'
+    sorts: [request_logs.count desc]
+    limit: 500
+    column_limit: 50
+    query_timezone: America/Los_Angeles
+    color_application:
+      collection_id: e4393aae-f2ff-4b1a-877e-7c48897378ca
+      palette_id: 7f167c51-1d69-49a8-bd76-a8bd12b9a8d3
+      options:
+        steps: 5
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    y_axes: [{label: "# of Requests", orientation: left, series: [{axisId: request_logs.count,
+            id: request_logs.count, name: Violations Count}], showLabels: true, showValues: true,
+        unpinAxis: false, tickDensity: custom, tickDensityCustom: 38, type: linear}]
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: IP Address
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    limit_displayed_rows_values:
+      show_hide: hide
+      first_last: first
+      num_rows: 0
+    hide_legend: false
+    legend_position: center
+    series_types: {}
+    point_style: circle
+    series_colors: {}
+    series_labels:
+      request_logs.count: Violations Count
+    show_value_labels: false
+    label_density: 25
+    label_color: []
+    x_axis_scale: auto
+    y_axis_combined: true
+    ordering: none
+    show_null_labels: false
+    show_dropoff: false
+    show_totals_labels: false
+    show_silhouette: false
+    totals_color: "#808080"
+    row: 8
+    col: 0
+    width: 8
+    height: 7
+  - name: Top Rules with IP Counted (Blocking)
+    title: Top Rules with IP Counted (Blocking)
+    model: waf_demo
+    explore: request_logs
+    type: table
+    fields: [waf_logs.rule_message, request_logs.distinct_ip, request_logs.count]
+    filters:
+      request_logs.waf_executed: '1'
+      request_logs.waf_blocked: '1'
+    sorts: [request_logs.count desc]
+    limit: 500
+    query_timezone: America/Los_Angeles
+    show_view_names: false
+    show_row_numbers: true
+    truncate_column_names: false
+    hide_totals: false
+    hide_row_totals: false
+    series_labels:
+      request_logs.distinct_ip: Distinct IPs
+      request_logs.count: "# of Requests"
+    table_theme: editable
+    limit_displayed_rows: false
+    enable_conditional_formatting: false
+    conditional_formatting_include_totals: false
+    conditional_formatting_include_nulls: false
+    series_types: {}
+    row: 44
+    col: 12
+    width: 12
+    height: 6
+  - name: Traffic Overview (%)
+    title: Traffic Overview (%)
+    model: waf_demo
+    explore: request_logs
+    type: looker_donut_multiples
+    fields: [request_logs.passed_count, request_logs.blocked_count, request_logs.logged_count,
+      request_logs.failure_count]
+    filters:
+      request_logs.waf_executed: '1'
+      request_logs.timestamp_date: 7 days
+    limit: 500
+    column_limit: 50
+    query_timezone: America/Los_Angeles
+    show_value_labels: true
+    font_size: 12
+    hide_legend: false
+    series_colors:
+      request_logs.passed_count: "#3cb64b"
+      request_logs.blocked_count: "#e82c2a"
+      request_logs.logged_count: "#f79421"
+      request_logs.failure_count: "#f5f427"
+    series_labels:
+      request_logs.blocked_count: WAF Traffic Blocked
+      request_logs.failure_count: WAF Traffic Failure
+      request_logs.logged_count: WAF Traffic Logged
+      request_logs.passed_count: WAF Traffic Passed
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    y_axes: [{label: "# of Requests", orientation: left, series: [{axisId: request_logs.blocked_count,
+            id: request_logs.blocked_count, name: Blocked Count}, {axisId: request_logs.failure_count,
+            id: request_logs.failure_count, name: Failure Count}, {axisId: request_logs.logged_count,
+            id: request_logs.logged_count, name: Logged Count}, {axisId: request_logs.passed_count,
+            id: request_logs.passed_count, name: Passed Count}], showLabels: true,
+        showValues: true, minValue: !!null '', unpinAxis: false, tickDensity: default,
+        tickDensityCustom: 5, type: linear}]
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: Request Time (Minute15)
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: right
+    point_style: none
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    reference_lines: []
+    show_null_points: true
+    interpolation: linear
+    series_types: {}
+    row: 0
+    col: 16
+    width: 8
+    height: 8
+  - name: Traffic Overview
+    title: Traffic Overview
+    model: waf_demo
+    explore: request_logs
+    type: looker_line
+    fields: [request_logs.timestamp_minute15, request_logs.passed_count, request_logs.blocked_count,
+      request_logs.logged_count, request_logs.failure_count]
+    fill_fields: [request_logs.timestamp_minute15]
+    filters:
+      request_logs.waf_executed: '1'
+    sorts: [request_logs.timestamp_minute15 desc]
+    limit: 500
+    column_limit: 50
+    query_timezone: America/Los_Angeles
+    x_axis_gridlines: false
+    y_axis_gridlines: true
+    show_view_names: false
+    y_axes: [{label: "# of Requests", orientation: left, series: [{axisId: request_logs.blocked_count,
+            id: request_logs.blocked_count, name: Blocked Count}, {axisId: request_logs.failure_count,
+            id: request_logs.failure_count, name: Failure Count}, {axisId: request_logs.logged_count,
+            id: request_logs.logged_count, name: Logged Count}, {axisId: request_logs.passed_count,
+            id: request_logs.passed_count, name: Passed Count}], showLabels: true,
+        showValues: true, minValue: !!null '', unpinAxis: false, tickDensity: default,
+        tickDensityCustom: 5, type: linear}]
+    show_y_axis_labels: true
+    show_y_axis_ticks: true
+    y_axis_tick_density: default
+    y_axis_tick_density_custom: 5
+    show_x_axis_label: true
+    x_axis_label: Request Time (Minute15)
+    show_x_axis_ticks: true
+    y_axis_scale_mode: linear
+    x_axis_reversed: false
+    y_axis_reversed: false
+    plot_size_by_field: false
+    trellis: ''
+    stacking: ''
+    limit_displayed_rows: false
+    legend_position: right
+    point_style: none
+    series_colors:
+      request_logs.passed_count: "#3cb64b"
+      request_logs.blocked_count: "#e82c2a"
+      request_logs.logged_count: "#f79421"
+      request_logs.failure_count: "#f5f427"
+    series_labels:
+      request_logs.blocked_count: WAF Traffic Blocked
+      request_logs.failure_count: WAF Traffic Failure
+      request_logs.logged_count: WAF Traffic Logged
+      request_logs.passed_count: WAF Traffic Passed
+    show_value_labels: false
+    label_density: 25
+    x_axis_scale: auto
+    y_axis_combined: true
+    reference_lines: []
+    show_null_points: true
+    interpolation: linear
+    row: 0
+    col: 0
+    width: 16
+    height: 8
+  - name: Top Rules (Blocking)
+    title: Top Rules (Blocking)
+    model: waf_demo
+    explore: request_logs
+    type: looker_pie
+    fields: [waf_logs.rule_message, waf_logs.count]
+    filters:
+      request_logs.waf_executed: '1'
+      request_logs.waf_blocked: '1'
+      waf_logs.rule_id: "<1010000,>1100000"
+    sorts: [waf_logs.count desc]
+    limit: 500
+    query_timezone: America/Los_Angeles
+    series_types: {}
+    row: 23
+    col: 16
+    width: 8
+    height: 7
+  - name: Top Rules (Logged)
+    title: Top Rules (Logged)
+    model: waf_demo
+    explore: request_logs
+    type: looker_pie
+    fields: [waf_logs.rule_message, request_logs.logged_count]
+    filters:
+      waf_logs.rule_message: "-EMPTY"
+      request_logs.waf_executed: '1'
+      waf_logs.rule_id: ">1010000,<1100000"
+    sorts: [request_logs.logged_count desc]
+    limit: 500
+    query_timezone: America/Los_Angeles
+    series_types: {}
+    row: 30
+    col: 16
+    width: 8
+    height: 7
+  filters:
+  - name: Time Range
+    title: Time Range
+    type: date_filter
+    default_value: 7 days
+    allow_multiple_values: true
+    required: false
+

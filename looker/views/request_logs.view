@@ -1,0 +1,445 @@
+view: request_logs {
+  sql_table_name: waf_demo.request_logs ;;
+
+  dimension: anomaly_score {
+    type: number
+    sql: ${TABLE}.anomaly_score ;;
+  }
+
+  dimension: city {
+    type: string
+    sql: ${TABLE}.city ;;
+  }
+
+  dimension: client_ip {
+    type: string
+    sql: ${TABLE}.client_ip ;;
+  }
+
+  dimension: continent_code {
+    type: string
+    sql: ${TABLE}.continent_code ;;
+  }
+
+  dimension: country_code {
+    type: string
+    map_layer_name: countries
+    sql: ${TABLE}.country_code ;;
+  }
+
+  dimension: ip_organization {
+    type: string
+    sql: ${TABLE}.geo_ip_organization ;;
+  }
+
+  dimension: datacenter {
+    type: string
+    sql: ${TABLE}.datacenter ;;
+  }
+
+  dimension: fastly_info {
+    type: string
+    sql: ${TABLE}.fastly_info ;;
+  }
+
+  dimension: http_violation_score {
+    type: number
+    sql: ${TABLE}.http_violation_score ;;
+  }
+
+  dimension: latitude {
+    type: number
+    sql: ${TABLE}.latitude ;;
+  }
+
+  dimension: lfi_score {
+    type: number
+    sql: ${TABLE}.lfi_score ;;
+  }
+
+  dimension: longitude {
+    type: number
+    sql: ${TABLE}.longitude ;;
+  }
+
+  dimension: php_injection_score {
+    type: number
+    sql: ${TABLE}.php_injection_score ;;
+  }
+
+  dimension: rce_score {
+    type: number
+    sql: ${TABLE}.rce_score ;;
+  }
+
+  dimension: req_accept {
+    type: string
+    sql: ${TABLE}.req_accept ;;
+  }
+
+  dimension: req_accept_charset {
+    type: string
+    sql: ${TABLE}.req_accept_charset ;;
+  }
+
+  dimension: req_accept_encoding {
+    type: string
+    sql: ${TABLE}.req_accept_encoding ;;
+  }
+
+  dimension: req_accept_language {
+    type: string
+    sql: ${TABLE}.req_accept_language ;;
+  }
+
+  dimension: req_body_bytes {
+    type: number
+    sql: ${TABLE}.req_body_bytes ;;
+  }
+
+  dimension: req_connection {
+    type: string
+    sql: ${TABLE}.req_connection ;;
+  }
+
+  dimension: req_forwarded {
+    type: string
+    sql: ${TABLE}.req_forwarded ;;
+  }
+
+  dimension: req_header_bytes {
+    type: number
+    sql: ${TABLE}.req_header_bytes ;;
+  }
+
+  dimension: req_host {
+    type: string
+    sql: ${TABLE}.req_host ;;
+  }
+
+  dimension: req_method {
+    type: string
+    sql: ${TABLE}.req_method ;;
+  }
+
+  dimension: req_referer {
+    type: string
+    sql: ${TABLE}.req_referer ;;
+  }
+
+  dimension: req_uri {
+    type: string
+    sql: ${TABLE}.req_uri ;;
+  }
+
+  dimension: req_user_agent {
+    type: string
+    sql: ${TABLE}.req_user_agent ;;
+  }
+
+  dimension: req_via {
+    type: string
+    sql: ${TABLE}.req_via ;;
+  }
+
+  dimension: req_x_requested_for {
+    type: string
+    sql: ${TABLE}.req_x_requested_for ;;
+  }
+
+  dimension: req_x_requested_with {
+    type: string
+    sql: ${TABLE}.req_x_requested_with ;;
+  }
+
+  dimension: request_id {
+    type: string
+    sql: ${TABLE}.request_id ;;
+  }
+
+  dimension: resp_body_bytes {
+    type: number
+    sql: ${TABLE}.resp_body_bytes ;;
+  }
+
+  dimension: resp_bytes {
+    type: number
+    sql: ${TABLE}.resp_bytes ;;
+  }
+
+  dimension: resp_header_bytes {
+    type: number
+    sql: ${TABLE}.resp_header_bytes ;;
+  }
+
+  dimension: resp_status {
+    type: number
+    sql: ${TABLE}.resp_status ;;
+  }
+
+  dimension: rfi_score {
+    type: number
+    sql: ${TABLE}.rfi_score ;;
+  }
+
+  dimension: service_id {
+    type: string
+    sql: ${TABLE}.service_id ;;
+  }
+
+  dimension: session_fixation_score {
+    type: number
+    sql: ${TABLE}.session_fixation_score ;;
+  }
+
+  dimension: sql_injection_score {
+    type: number
+    sql: ${TABLE}.sql_injection_score ;;
+  }
+
+  dimension_group: timestamp {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      hour_of_day,
+      minute5,
+      minute10,
+      minute15,
+      minute30
+    ]
+    sql: ${TABLE}.timestamp ;;
+  }
+
+  dimension: tls_client_cipher {
+    type: string
+    sql: ${TABLE}.tls_client_cipher ;;
+  }
+
+  dimension: tls_client_ciphers_list {
+    type: string
+    sql: ${TABLE}.tls_client_ciphers_list ;;
+  }
+
+  dimension: tls_client_protocol {
+    type: string
+    sql: ${TABLE}.tls_client_protocol ;;
+  }
+
+  dimension: tls_client_tlsexts_list {
+    type: string
+    sql: ${TABLE}.tls_client_tlsexts_list ;;
+  }
+
+  dimension: waf_blocked {
+    type: number
+    sql: ${TABLE}.waf_blocked ;;
+  }
+
+  dimension: waf_executed {
+    type: number
+    sql: ${TABLE}.waf_executed ;;
+  }
+
+  dimension: waf_failures {
+    type: number
+    sql: ${TABLE}.waf_failures ;;
+  }
+
+  dimension: waf_logged {
+    type: number
+    sql: ${TABLE}.waf_logged ;;
+  }
+
+  dimension: waf_passed {
+    type: number
+    sql: ${TABLE}.waf_passed ;;
+  }
+
+  dimension: xss_score {
+    type: number
+    sql: ${TABLE}.xss_score ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: []
+  }
+
+  measure: distinct_ip {
+    type: count_distinct
+    sql: ${client_ip} ;;
+    drill_fields: [client_ip]
+  }
+
+  measure: count_ip {
+    type: count_distinct
+    sql: ${client_ip} ;;
+    drill_fields: [client_ip]
+  }
+
+  dimension: logged_condition  {
+    type:  yesno
+    sql: (${waf_logged} = 1 and ${waf_blocked} = 0) or (${waf_passed} = 1 and ${anomaly_score} > 0)  ;;
+  }
+
+  measure: logged_count {
+    type:  count
+    filters: {
+      field:  logged_condition
+      value: "yes"
+    }
+  }
+
+  dimension: passed_condition  {
+    type: yesno
+    sql: ${waf_passed} = 1 and (${waf_logged} = 0 and ${waf_blocked}= 0) ;;
+  }
+
+  measure: passed_count {
+    type:  count
+    filters: {
+      field:  passed_condition
+      value: "yes"
+    }
+  }
+
+  measure: blocked_count {
+    type:  count
+    filters: {
+      field:  waf_blocked
+      value: "1"
+    }
+  }
+
+  measure: failure_count {
+    type:  count
+    filters: {
+      field:  waf_failures
+      value: "1"
+    }
+  }
+
+  dimension: anomaly_condition  {
+    type: yesno
+    sql: ${anomaly_score} > 0 ;;
+  }
+
+  measure: anomaly_count {
+    type:  count
+    filters: {
+      field:  anomaly_condition
+      value: "yes"
+    }
+  }
+
+  dimension: http_violation_condition  {
+    type: yesno
+    sql: ${http_violation_score} > 0 ;;
+  }
+
+  measure: http_violation_count {
+    type:  count
+    filters: {
+      field:  http_violation_condition
+      value: "yes"
+    }
+  }
+
+  dimension: lfi_condition  {
+    type: yesno
+    sql: ${lfi_score} > 0 ;;
+  }
+
+  measure: lfi_count {
+    type:  count
+    filters: {
+      field:  lfi_condition
+      value: "yes"
+    }
+  }
+
+  dimension: php_injection_condition  {
+    type: yesno
+    sql: ${php_injection_score} > 0 ;;
+  }
+
+  measure: php_injection_count {
+    type:  count
+    filters: {
+      field:  php_injection_condition
+      value: "yes"
+    }
+  }
+
+  dimension: rce_condition  {
+    type: yesno
+    sql: ${rce_score} > 0 ;;
+  }
+
+  measure: rce_count {
+    type:  count
+    filters: {
+      field:  rce_condition
+      value: "yes"
+    }
+  }
+
+  dimension: rfi_condition  {
+    type: yesno
+    sql: ${rfi_score} > 0 ;;
+  }
+
+  measure: rfi_count {
+    type:  count
+    filters: {
+      field:  rfi_condition
+      value: "yes"
+    }
+  }
+
+  dimension: session_fixation_condition  {
+    type: yesno
+    sql: ${session_fixation_score} > 0 ;;
+  }
+
+  measure: session_fixation_count {
+    type:  count
+    filters: {
+      field:  session_fixation_condition
+      value: "yes"
+    }
+  }
+
+  dimension: sql_injection_condition  {
+    type: yesno
+    sql: ${sql_injection_score} > 0 ;;
+  }
+
+  measure: sql_injection_count {
+    type:  count
+    filters: {
+      field:  sql_injection_condition
+      value: "yes"
+    }
+  }
+
+  dimension: xss_condition  {
+    type: yesno
+    sql: ${xss_score} > 0 ;;
+  }
+
+  measure: xss_count {
+    type:  count
+    filters: {
+      field:  xss_condition
+      value: "yes"
+    }
+  }
+}
+

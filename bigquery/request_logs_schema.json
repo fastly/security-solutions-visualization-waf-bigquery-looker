@@ -1,0 +1,252 @@
+[
+ {
+    "mode": "NULLABLE",
+    "name": "timestamp",
+    "type": "TIMESTAMP" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "service_id",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "request_id",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "fastly_info",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_referer",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "datacenter",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "client_ip",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "city",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "country_code",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "continent_code",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "latitude",
+    "type": "FLOAT" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "longitude",
+    "type": "FLOAT" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_method",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_uri",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_host",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_user_agent",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_header_bytes",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_body_bytes",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_accept",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_accept_language",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_accept_encoding",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_accept_charset",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_connection",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_forwarded",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_via",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_x_requested_with",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "req_x_requested_for",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "waf_logged",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "waf_blocked",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "waf_failures",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "waf_executed",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "waf_passed",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "anomaly_score",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "sql_injection_score",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "rfi_score",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "lfi_score",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "rce_score",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "php_injection_score",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "session_fixation_score",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "http_violation_score",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "xss_score",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "resp_status",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "resp_bytes",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "resp_header_bytes",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "resp_body_bytes",
+    "type": "INTEGER" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "tls_client_cipher",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "tls_client_ciphers_list",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "tls_client_protocol",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "tls_client_tlsexts_list",
+    "type": "STRING" 
+ },
+ {
+    "mode": "NULLABLE",
+    "name": "geo_ip_organization",
+    "type": "STRING" 
+ }
+]

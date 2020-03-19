@@ -1,0 +1,21 @@
+connection: "waf_demo"
+
+# include all the views
+include: "/views/**/*.view"
+
+datagroup: waf_demo_default_datagroup {
+  # sql_trigger: SELECT MAX(id) FROM etl_log;;
+  max_cache_age: "1 hour"
+}
+
+persist_with: waf_demo_default_datagroup
+
+explore: request_logs {
+  join: waf_logs {
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${request_logs.request_id} = ${waf_logs.request_id} ;;
+  }
+}
+
+explore: waf_logs {}

@@ -1,0 +1,77 @@
+view: waf_logs {
+  sql_table_name: waf_demo.waf_logs ;;
+
+  dimension: anomaly_score {
+    type: number
+    sql: ${TABLE}.anomaly_score ;;
+  }
+
+  dimension: logdata {
+    type: string
+    sql: ${TABLE}.logdata ;;
+  }
+
+  dimension: request_id {
+    type: string
+    sql: ${TABLE}.request_id ;;
+  }
+
+  dimension: rule_id {
+    type: number
+    sql: ${TABLE}.rule_id ;;
+  }
+
+  dimension: severity {
+    type: string
+    sql: ${TABLE}.severity ;;
+  }
+
+  dimension_group: timestamp {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      hour_of_day,
+      minute5,
+      minute10,
+      minute15,
+      minute30
+    ]
+    sql: ${TABLE}.timestamp ;;
+  }
+
+  dimension: waf_blocked {
+    type: string
+    sql: ${TABLE}.waf_blocked ;;
+  }
+
+  dimension: waf_logged {
+    type: string
+    sql: ${TABLE}.waf_logged ;;
+  }
+
+  dimension: waf_message {
+    type: string
+    sql: ${TABLE}.waf_message ;;
+  }
+
+  measure: count {
+    type: count
+    drill_fields: []
+  }
+
+  dimension: rule_message {
+    sql: concat(cast(${rule_id} as string),' - ',${waf_message}) ;;
+  }
+
+  dimension: logdata_decode {
+    sql: safe_convert_bytes_to_string(from_base64(replace(${logdata}, "=", ""))) ;;
+  }
+
+}
+
