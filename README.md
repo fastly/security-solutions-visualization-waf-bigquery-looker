@@ -1,14 +1,14 @@
 ![Fastly WAF](/images/fastly-waf.png)
-# Fastly WAF - BigQuery & Looker visualisation example
+# Fastly WAF - BigQuery & Looker visualization example
 ## Fastly Edge Security Solutions team
 
 ## Intro
 
 Visibility is the foundation of an effective defensive strategy. The ability to capture security events with minimal latency, enables rapid mitigation of attacks and other threats, and therefore helps minimise the potential damage that can result from such attacks.
 
-Fastly’s [real-time streaming logs](https://docs.fastly.com/en/guides/about-fastlys-realtime-log-streaming-features) give you the ability to capture vital log data in near real time, allowing you respond to anomalies as and when they occur.
+Fastly’s [real-time streaming logs](https://docs.fastly.com/en/guides/about-fastlys-realtime-log-streaming-features) give you the ability to capture vital log data in near real time, allowing to you respond to anomalies as and when they occur.
 
-Capturing log data is great starting point. You’ll get a lot of information! But on its own, it is not enough to actually protect against the array of threats out there. Fastly’s [WAF](https://docs.fastly.com/en/guides/web-application-firewall) (Web Application Firewall) takes the OWASP [Core Rule Set](https://owasp.org/www-project-modsecurity-core-rule-set/) combined with commercial resources and our own research to offer more comprehensive protection.
+Capturing log data is a great starting point. You’ll get a lot of information! But on its own, it is not enough to actually protect against the array of threats out there. Fastly’s [WAF](https://docs.fastly.com/en/guides/web-application-firewall) (Web Application Firewall) takes the OWASP [Core Rule Set](https://owasp.org/www-project-modsecurity-core-rule-set/) combined with commercial resources and our own research to offer more comprehensive protection.
 
 Customizable dashboards allow you to focus only on what matters to you. You can rapidly respond to request patterns that are foreshadowing a breach and update your configuration in seconds. 
 
@@ -17,7 +17,7 @@ There are several choices for third-party log streaming tools available and Fast
 However, in this repo we're going to focus on:
  
  - configuring a Fastly service to stream HTTP request logs and WAF event logs to BigQuery
- - configuring Looker to create visualisations of the log data
+ - configuring Looker to create visualizations of the log data
  
 You can find further details in the following blog post: https://www.fastly.com/blog
 
